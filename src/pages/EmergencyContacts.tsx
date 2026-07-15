@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/context/AuthContext";
+import { API_URL } from "@/config";
 
 interface Contact {
   id: string;
@@ -38,7 +39,7 @@ const EmergencyContacts = () => {
       const token = getToken();
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:5000/api/contacts", {
+        const res = await fetch(`${API_URL}/api/contacts`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
@@ -71,7 +72,7 @@ const EmergencyContacts = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/contacts", {
+      const res = await fetch(`${API_URL}/api/contacts`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: name.trim(), phone: cleanPhone, relation: relation.trim() })
@@ -91,7 +92,7 @@ const EmergencyContacts = () => {
     const token = getToken();
     if (!token) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/contacts/${id}`, {
+      const res = await fetch(`${API_URL}/api/contacts/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });

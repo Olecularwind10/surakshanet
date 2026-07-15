@@ -3,6 +3,7 @@ import { MessageCircle, X, Send, Mic, Volume2, MicOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
+import { API_URL } from "@/config";
 
 interface Message {
   id: string;
@@ -28,7 +29,7 @@ export const AICompanion = () => {
       const token = getToken();
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:5000/api/chat", {
+        const res = await fetch(`${API_URL}/api/chat`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
@@ -70,7 +71,7 @@ export const AICompanion = () => {
     const token = getToken();
     if (!token) return;
     try {
-      await fetch("http://localhost:5000/api/chat", {
+      await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ messages: msgs })

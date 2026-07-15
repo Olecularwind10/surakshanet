@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, MapPin, Check, Loader2, Settings, MapPinOff, AlertCircle } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
+import { API_URL } from "@/config";
 
 type SOSState = "idle" | "sending" | "sent";
 type LocationPermission = "prompt" | "granted" | "denied" | "unavailable";
@@ -54,7 +55,7 @@ const SOSButton = () => {
       const token = getToken();
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:5000/api/contacts", {
+        const res = await fetch(`${API_URL}/api/contacts`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
@@ -134,7 +135,7 @@ const SOSButton = () => {
     try {
       const token = getToken();
       if (token) {
-        const response = await fetch("http://localhost:5000/api/sos", {
+        const response = await fetch(`${API_URL}/api/sos`, {
           method: "POST",
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
           body: JSON.stringify({ locationUrl, message: rawMessage })

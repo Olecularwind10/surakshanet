@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, PhoneOff, User } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { API_URL } from "@/config";
 
 const FakeCallButton = () => {
   const [ringing, setRinging] = useState(false);
@@ -15,7 +16,7 @@ const FakeCallButton = () => {
       const token = getToken();
       if (!token) return;
       try {
-        const res = await fetch("http://localhost:5000/api/contacts", {
+        const res = await fetch(`${API_URL}/api/contacts`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {
