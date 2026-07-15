@@ -72,7 +72,7 @@ const Navbar = () => {
       </div>
 
       {open && (
-        <div className="md:hidden border-t bg-background px-4 py-4 space-y-3">
+        <div className="xl:hidden border-t bg-background px-4 py-4 space-y-3">
           {links.map((l) => (
             <Link
               key={l.to}

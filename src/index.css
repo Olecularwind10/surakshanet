@@ -8,6 +8,9 @@
   html {
     font-size: 16px;
     /* Standard base font size */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
   }
 
   :root {
@@ -109,8 +112,10 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
     font-family: var(--font-body);
+    width: 100%;
+    max-width: 100%;
   }
 
   h1,
